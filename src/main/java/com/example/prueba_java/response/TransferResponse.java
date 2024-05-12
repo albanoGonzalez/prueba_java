@@ -10,6 +10,8 @@ public class TransferResponse {
     private String cuentaDestino;
 	private Integer cantidad;
     private String fecha;
+    private Integer status; //error
+    private String message; //error
     
     public TransferResponse(Integer id, String nombreOrigen, String nombreDestino, String cuentaOrigen,
             String cuentaDestino, Integer cantidad, String fecha) {
@@ -22,6 +24,11 @@ public class TransferResponse {
         this.fecha = fecha;
     }
 
+    //Constructor for errors
+    public TransferResponse(Integer status, String message) {
+        this.status = status;
+        this.message = message;
+    }
 
     public TransferResponse() {
     }
@@ -68,5 +75,20 @@ public class TransferResponse {
     }
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
