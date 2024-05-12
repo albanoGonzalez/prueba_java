@@ -36,7 +36,7 @@ public class AccountController {
     }
 
     //This method will be used in the TransferRequest to validate the money and if the account exits
-    public boolean verificarExistenciaYFondos(@PathVariable String id, @PathVariable Integer cantidad) {
+    public boolean ExistsAccountandMoney(@PathVariable String id, @PathVariable Integer cantidad) {
         AccountModel cuenta = cuentaRepository.findById(id).orElse(null);
         if (cuenta == null) return false;
         return cuenta.getMoney().compareTo(cantidad) >= 0;
@@ -48,13 +48,13 @@ public class AccountController {
         AccountModel accountDest = cuentaRepository.findById(accountDestination)
                                                .orElseThrow(() -> new Exception("Account Destination does not exist"));
 
-        if (accountOr.retirar(amount)) {
-            accountDest.depositar(amount);
+        if (accountOr.withdraw(amount)) {
+            accountDest.deposit(amount);
         } else {
             throw new Exception("Saldo insuficiente para realizar la transferencia");
         }
 
-        cuentaRepository.save(cuentaOrigen);
-        cuentaRepository.save(cuentaDestino);
+        cuentaRepository.save(accountOr);
+        cuentaRepository.save(accountDest);
     }
 }

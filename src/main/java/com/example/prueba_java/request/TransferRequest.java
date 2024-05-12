@@ -3,42 +3,58 @@ package com.example.prueba_java.request;
 import java.sql.Date;
 
 public class TransferRequest {
-	private String nombreOrigen;
-    private String nombreDestino;
-    private String cuentaOrigen;
-    private String cuentaDestino;
-	private Integer cantidad;
+	private Integer id;
+	private static String nameOrigin;
+    private static String nameDestination;
+    private static String accountOrigin;
+    private static String accountDestination;
+	private static Integer amount;
+    private Date date;
     
-    public String getNombreOrigen() {
-        return nombreOrigen;
+    public Integer getId() {
+        return id;
     }
-    public void setNombreOrigen(String nombreOrigen) {
-        this.nombreOrigen = nombreOrigen;
+    public void setId(Integer id) {
+        this.id = id;
     }
-    public String getNombreDestino() {
-        return nombreDestino;
+    public static String getNameOrigin() {
+        return nameOrigin;
     }
-    public void setNombreDestino(String nombreDestino) {
-        this.nombreDestino = nombreDestino;
+    public void setNameOrigin(String nameOrigin) {
+        this.nameOrigin = nameOrigin;
     }
-    public String getCuentaOrigen() {
-        return cuentaOrigen;
+    public static String getNameDestination() {
+        return nameDestination;
     }
-    public void setCuentaOrigen(String cuentaOrigen) {
-        this.cuentaOrigen = cuentaOrigen;
+    public void setNameDestination(String nameDestination) {
+        this.nameDestination = nameDestination;
     }
-    public String getCuentaDestino() {
-        return cuentaDestino;
+    public static String getAccountOrigin() {
+        return accountOrigin;
     }
-    public void setCuentaDestino(String cuentaDestino) {
-        this.cuentaDestino = cuentaDestino;
+    public void setAccountOrigin(String accountOrigin) {
+        this.accountOrigin = accountOrigin;
     }
-    public Integer getCantidad() {
-        return cantidad;
+    public static String getAccountDestination() {
+        return accountDestination;
     }
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setAccountDestination(String accountDestination) {
+        this.accountDestination = accountDestination;
     }
+    public static Integer getAmount() {
+        return amount;
+    }
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+    public Date getDate() {
+        return date;
+    }
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    
 
     
 }
