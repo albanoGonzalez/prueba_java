@@ -10,15 +10,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.prueba_java.model.AccountModel;
+import com.example.prueba_java.model.TransferModel;
 import com.example.prueba_java.repository.AccountRepository;
+import com.example.prueba_java.repository.TransferRepository;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 public class AccountController {
     @Autowired
     private AccountRepository cuentaRepository;
+
+    @Autowired
+    private TransferRepository transferenciaRepository;
 
     @GetMapping("/cuenta")
     public List<AccountModel> obtenerTodasLasCuentas() {
@@ -36,13 +42,23 @@ public class AccountController {
     }
 
     //This method will be used in the TransferRequest to validate the money and if the account exits
-    public boolean ExistsAccountandMoney(@PathVariable String id, @PathVariable Integer cantidad) {
+    public boolean ExistsAccountandMoney(String id, Integer cantidad) {
+        System.out.println("Account");
+        System.out.println(id);
         AccountModel cuenta = cuentaRepository.findById(id).orElse(null);
+        System.out.println(cuenta);
         if (cuenta == null) return false;
         return cuenta.getMoney().compareTo(cantidad) >= 0;
     }
 
-    public void realizarTransferencia(String accountOrigin, String accountDestination, Integer amount) throws Exception {
+    public boolean EnoughMoney(String id, Integer cantidad) {
+        System.out.println("Money");
+        System.out.println(id);
+        AccountModel cuenta = cuentaRepository.findById(id).orElse(null);
+        return cuenta.getMoney() >= cantidad;
+    }
+
+    public void realizarTransferencia(String nameOrigin, String nameDestination,String accountOrigin, String accountDestination, Integer amount, Date currentDate) throws Exception {
         AccountModel accountOr = cuentaRepository.findById(accountOrigin)
                                               .orElseThrow(() -> new Exception("Account Origin does not exist"));
         AccountModel accountDest = cuentaRepository.findById(accountDestination)
@@ -51,10 +67,13 @@ public class AccountController {
         if (accountOr.withdraw(amount)) {
             accountDest.deposit(amount);
         } else {
-            throw new Exception("Saldo insuficiente para realizar la transferencia");
+            throw new Exception("Not enough money to make the transfer");
         }
 
         cuentaRepository.save(accountOr);
         cuentaRepository.save(accountDest);
+
+        TransferModel transfer = new TransferModel(1,nameOrigin, nameDestination,accountOrigin, accountDestination, amount, currentDate);
+        transferenciaRepository.save(transfer);
     }
 }

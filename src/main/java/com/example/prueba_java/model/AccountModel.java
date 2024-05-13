@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 @Table(name = "Cuenta")
 public class AccountModel {
     @Id //check it out
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
 	private String id;
 	private String name;

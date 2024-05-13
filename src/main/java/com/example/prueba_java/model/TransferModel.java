@@ -1,6 +1,6 @@
 package com.example.prueba_java.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +27,7 @@ public class TransferModel {
 	//}
 
 	// Constructor with parameters
-	public TransferModel(Integer id, String nameOrigin,String nameDestination,String accountOrigin,String accountDestination,Integer amount, Date date) {
+	public TransferModel(Integer id, String nameOrigin,String nameDestination,String accountOrigin,String accountDestination,Integer amount, java.util.Date date) {
 		this.id = id;
 		this.nameOrigin = nameOrigin;
         this.nameDestination = nameDestination;

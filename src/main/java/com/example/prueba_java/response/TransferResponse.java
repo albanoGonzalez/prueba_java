@@ -9,19 +9,19 @@ public class TransferResponse {
     private String cuentaOrigen;
     private String cuentaDestino;
 	private Integer cantidad;
-    private String fecha;
+    private Date date;
     private Integer status; //error
     private String message; //error
     
     public TransferResponse(Integer id, String nombreOrigen, String nombreDestino, String cuentaOrigen,
-            String cuentaDestino, Integer cantidad, String fecha) {
+            String cuentaDestino, Integer cantidad, java.util.Date fecha) {
         this.id = id;
         this.nombreOrigen = nombreOrigen;
         this.nombreDestino = nombreDestino;
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
         this.cantidad = cantidad;
-        this.fecha = fecha;
+        this.date = date;
     }
 
     //Constructor for errors
