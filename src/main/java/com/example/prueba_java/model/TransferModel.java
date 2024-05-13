@@ -2,6 +2,7 @@ package com.example.prueba_java.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,21 +15,24 @@ public class TransferModel {
     @Id //check it out
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name="NAMEORIGIN")
 	private String nameOrigin;
+	@Column(name="NAMEDESTINATION")
     private String nameDestination;
+	@Column(name="ACCOUNTORIGIN")
     private String accountOrigin;
+	@Column(name="ACCOUNTDESTINATION")
     private String accountDestination;
 	private Integer amount;
     private Date date;
 
 	//Constructor by default
-	//public Transferencia(){
+	public TransferModel(){
 
-	//}
+	}
 
 	// Constructor with parameters
-	public TransferModel(Integer id, String nameOrigin,String nameDestination,String accountOrigin,String accountDestination,Integer amount, java.util.Date date) {
-		this.id = id;
+	public TransferModel( String nameOrigin,String nameDestination,String accountOrigin,String accountDestination,Integer amount, java.util.Date date) {
 		this.nameOrigin = nameOrigin;
         this.nameDestination = nameDestination;
         this.accountOrigin = accountOrigin;

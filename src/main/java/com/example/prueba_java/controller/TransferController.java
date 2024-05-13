@@ -58,7 +58,7 @@ public class TransferController {
 
             // Realizar la transferencia
             accountCont.realizarTransferencia(nameOrigin, nameDestination, accountOrigin, accountDestination, amount,currentDate);
-            return ResponseEntity.ok(new TransferResponse(1, nameOrigin, nameDestination,
+            return ResponseEntity.ok(new TransferResponse(2, nameOrigin, nameDestination,
             accountOrigin, accountDestination,amount, currentDate));
            // return ResponseEntity.ok(new TransferResponse(1,"dummu","dd","ddd",
            // "dsssd",34,"2024-04-19")) ;

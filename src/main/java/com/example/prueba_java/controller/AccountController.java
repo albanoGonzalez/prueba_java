@@ -35,6 +35,11 @@ public class AccountController {
     public AccountModel obtenerCuentaPorId(@PathVariable String id) {
         return cuentaRepository.findById(id).orElse(null);
     }
+
+    @PostMapping("/newAccount")
+    public AccountModel newAccount(@RequestBody AccountModel account) {
+        return cuentaRepository.save(new AccountModel(account.getId(), account.getName(), account.getMoney()));
+    }
     
     @GetMapping("/cuenta/{id}/existe")
     public boolean existeCuenta(@PathVariable String id){
@@ -72,8 +77,9 @@ public class AccountController {
 
         cuentaRepository.save(accountOr);
         cuentaRepository.save(accountDest);
-
-        TransferModel transfer = new TransferModel(1,nameOrigin, nameDestination,accountOrigin, accountDestination, amount, currentDate);
+        System.out.println("Save Transfer");
+        TransferModel transfer = new TransferModel(nameOrigin, nameDestination,accountOrigin, accountDestination, amount, currentDate);
+        System.out.println(transfer.getAccountDestination());
         transferenciaRepository.save(transfer);
     }
 }

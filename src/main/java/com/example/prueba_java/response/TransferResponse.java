@@ -4,24 +4,24 @@ import java.util.Date;
 
 public class TransferResponse {
     private Integer id;
-    private String nombreOrigen;
-    private String nombreDestino;
-    private String cuentaOrigen;
-    private String cuentaDestino;
-	private Integer cantidad;
+	private String nameOrigin;
+    private String nameDestination;
+    private String accountOrigin;
+    private String accountDestination;
+	private Integer amount;
     private Date date;
     private Integer status; //error
     private String message; //error
     
-    public TransferResponse(Integer id, String nombreOrigen, String nombreDestino, String cuentaOrigen,
-            String cuentaDestino, Integer cantidad, java.util.Date fecha) {
-        this.id = id;
-        this.nombreOrigen = nombreOrigen;
-        this.nombreDestino = nombreDestino;
-        this.cuentaOrigen = cuentaOrigen;
-        this.cuentaDestino = cuentaDestino;
-        this.cantidad = cantidad;
-        this.date = date;
+    public TransferResponse(Integer id, String nameOrigin, String nameDestination, String accountOrigin,
+            String accountDestination, Integer amount, java.util.Date date) {
+            this.id = id;
+            this.nameOrigin = nameOrigin;
+            this.nameDestination = nameDestination;
+            this.accountOrigin = accountOrigin;
+            this.accountDestination = accountDestination;
+            this.amount = amount;
+            this.date = date;
     }
 
     //Constructor for errors
@@ -33,49 +33,62 @@ public class TransferResponse {
     public TransferResponse() {
     }
 
-    
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getFecha() {
-        return fecha;
-    }
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-    public String getNombreOrigen() {
-        return nombreOrigen;
-    }
-    public void setNombreOrigen(String nombreOrigen) {
-        this.nombreOrigen = nombreOrigen;
-    }
-    public String getNombreDestino() {
-        return nombreDestino;
-    }
-    public void setNombreDestino(String nombreDestino) {
-        this.nombreDestino = nombreDestino;
-    }
-    public String getCuentaOrigen() {
-        return cuentaOrigen;
-    }
-    public void setCuentaOrigen(String cuentaOrigen) {
-        this.cuentaOrigen = cuentaOrigen;
-    }
-    public String getCuentaDestino() {
-        return cuentaDestino;
-    }
-    public void setCuentaDestino(String cuentaDestino) {
-        this.cuentaDestino = cuentaDestino;
-    }
-    public Integer getCantidad() {
-        return cantidad;
-    }
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
-    }
+    // Getters y setters
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String getNameOrigin() {
+		return nameOrigin;
+	}
+	
+	public void setNaneOrigin(String nameOrigin) {
+		this.nameOrigin = nameOrigin;
+	}
+
+    public String getNameDestination() {
+		return nameDestination;
+	}
+	
+	public void setNameDestination(String nameDestination) {
+		this.nameDestination = nameDestination;
+	}
+
+    public String getAccountOrigin() {
+		return accountOrigin;
+	}
+	
+	public void setAccountOrigin(String accountOrigin) {
+		this.accountOrigin = accountOrigin;
+	}
+
+    public String getAccountDestination() {
+		return accountDestination;
+	}
+	
+	public void setAccountDestination(String accountDestination) {
+		this.accountDestination = accountDestination;
+	}
+	
+	public Integer getAmount() {
+		return amount;
+	}
+	
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+    public Date getDate() {
+		return date;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
+	}
+  
     public Integer getStatus() {
         return status;
     }
