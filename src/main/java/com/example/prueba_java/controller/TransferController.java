@@ -64,6 +64,6 @@ public class TransferController {
            // "dsssd",34,"2024-04-19")) ;
 
 
-        }catch (Exception e ){ return ResponseEntity.badRequest().body(new TransferResponse(400,"Error en la transferencia: " + e.getMessage()));}
+        }catch (Exception e ){ return ResponseEntity.badRequest().body(new TransferResponse(400,"Error en la transferencia"));}
     }
 }
