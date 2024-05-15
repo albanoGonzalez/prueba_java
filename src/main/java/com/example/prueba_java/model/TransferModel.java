@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Transferencia")
+@Table(name = "transfer")
 public class TransferModel {
     @Id //check it out
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

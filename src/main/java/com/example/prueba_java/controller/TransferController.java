@@ -23,8 +23,8 @@ public class TransferController {
     @Autowired //Important -- automatically inject an instance
     private AccountController accountCont;
 
-    @PutMapping("transferencia/estado")
-    public ResponseEntity<TransferResponse> estadoTransferencia(@RequestBody TransferRequest transferRequest){
+    @PutMapping("transfer/status")
+    public ResponseEntity<TransferResponse> transferState(@RequestBody TransferRequest transferRequest){
      
         try{
             String nameOrigin = transferRequest.getNameOrigin();
@@ -36,8 +36,17 @@ public class TransferController {
             LocalDateTime now = LocalDateTime.now();
             Date currentDate = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
             System.out.println(currentDate);
-            
-            // verify the accounts and the money in each account
+            //CHECK THE FIELDS AND TYPES
+            if (amount <= 0) {
+                throw new IllegalArgumentException("The number has to be possitive");
+            }
+            if (nameOrigin == null) {
+                throw new IllegalArgumentException("The nameOrigin can't be null");
+            }
+            if (nameDestination == null) {
+                throw new IllegalArgumentException("The nameDestination can't be null");
+            }
+            //verify the accounts and the money in each account
             System.out.println(accountOrigin);
             System.out.println(amount);
             boolean originValid = accountCont.ExistsAccountandMoney(accountOrigin, amount);
@@ -49,7 +58,7 @@ public class TransferController {
             //CURRENCY¿??? IMPORTANT TO CHECK THIS - If i have time do it - API Currency
 
             boolean enoughMoney = accountCont.EnoughMoney(accountOrigin, amount);
-            System.out.println(enoughMoney);
+            //System.out.println(enoughMoney);
 
             if (!originValid || !destinationValid || !enoughMoney) {
                 throw new Exception("Verification of failed accounts: make sure that both accounts exist and that the source account has sufficient funds.");
@@ -57,7 +66,7 @@ public class TransferController {
             System.out.println("ok");
 
             // Realizar la transferencia
-            accountCont.realizarTransferencia(nameOrigin, nameDestination, accountOrigin, accountDestination, amount,currentDate);
+            accountCont.makeTransfer(nameOrigin, nameDestination, accountOrigin, accountDestination, amount,currentDate);
             return ResponseEntity.ok(new TransferResponse(2, nameOrigin, nameDestination,
             accountOrigin, accountDestination,amount, currentDate));
            // return ResponseEntity.ok(new TransferResponse(1,"dummu","dd","ddd",

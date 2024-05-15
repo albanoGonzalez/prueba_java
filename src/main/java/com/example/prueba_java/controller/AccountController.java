@@ -14,7 +14,6 @@ import com.example.prueba_java.model.TransferModel;
 import com.example.prueba_java.repository.AccountRepository;
 import com.example.prueba_java.repository.TransferRepository;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -26,12 +25,12 @@ public class AccountController {
     @Autowired
     private TransferRepository transferenciaRepository;
 
-    @GetMapping("/cuenta")
+    @GetMapping("/account")
     public List<AccountModel> obtenerTodasLasCuentas() {
         return cuentaRepository.findAll();
     }
 
-    @GetMapping("/cuenta/{id}")
+    @GetMapping("/account/{id}")
     public AccountModel obtenerCuentaPorId(@PathVariable String id) {
         return cuentaRepository.findById(id).orElse(null);
     }
@@ -41,7 +40,7 @@ public class AccountController {
         return cuentaRepository.save(new AccountModel(account.getId(), account.getName(), account.getMoney()));
     }
     
-    @GetMapping("/cuenta/{id}/existe")
+    @GetMapping("/account/{id}/exist")
     public boolean existeCuenta(@PathVariable String id){
         return cuentaRepository.existsById(id);
     }
@@ -63,7 +62,7 @@ public class AccountController {
         return cuenta.getMoney() >= cantidad;
     }
 
-    public void realizarTransferencia(String nameOrigin, String nameDestination,String accountOrigin, String accountDestination, Integer amount, Date currentDate) throws Exception {
+    public void makeTransfer(String nameOrigin, String nameDestination,String accountOrigin, String accountDestination, Integer amount, Date currentDate) throws Exception {
         AccountModel accountOr = cuentaRepository.findById(accountOrigin)
                                               .orElseThrow(() -> new Exception("Account Origin does not exist"));
         AccountModel accountDest = cuentaRepository.findById(accountDestination)

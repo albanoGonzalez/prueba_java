@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 // This class is where I am going to define the Entity JPA CUENTA
 //I am going to create the constructors, getters and setters methods. 
 @Entity
-@Table(name = "Cuenta")
+@Table(name = "account")
 public class AccountModel {
     @Id //check it out
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
